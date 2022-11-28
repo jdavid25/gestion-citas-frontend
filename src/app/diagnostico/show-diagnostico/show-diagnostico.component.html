@@ -1,0 +1,40 @@
+<div class="my-2">
+  <button class="btn btn-dark" (click)="onRegresar()">Regresar</button>
+  <button class="btn btn-danger ms-2" (click)="onPDF()">PDF</button>
+</div>
+<div class="card" id="contenido" #contenido style="max-width: 700px;">
+  <div class="card-header">
+    <h1>Diagnostico</h1>
+  </div>
+  <div class="card-body">
+    <h4>Paciente: {{persona.nombre}} {{persona.apellido}}</h4>
+    <h4>Cedula: {{persona.num_documento}}</h4>
+    <h5>Medico: {{diagnostico.persona}}</h5>
+    <h5>Consultorio: {{diagnostico.consultorio}}</h5>
+    <h5>fecha: {{diagnostico.fecha}} hora: {{diagnostico.hora}}</h5>
+    <div class="alert alert-info">
+      <b>Diagnostico:</b><br>
+      {{diagnostico.descripcion}}
+    </div>
+    <h6>Medicamentos:</h6>
+    <div *ngIf="!medicamentos?.length" class="alert alert-info">No se recetaron medicamentos</div>
+    <table *ngIf="medicamentos?.length" class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Descripcion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medicamento of medicamentos; index as i;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{medicamento.nombre}}</td>
+          <td>{{medicamento.cantidad}}</td>
+          <td>{{medicamento.descripcion}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

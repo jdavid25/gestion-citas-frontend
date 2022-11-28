@@ -1,0 +1,28 @@
+<h1>Consultorios</h1>
+<button class="btn btn-primary my-2" (click)="onCrear()">Agregar</button>
+<div  *ngIf="!consultorios?.length" class="alert alert-info">No hay registros</div>
+<table *ngIf="consultorios?.length" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Departamento</th>
+      <th scope="col">Municipio</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let consultorio of consultorios; index as i;">
+      <th scope="row">{{i+1}}</th>
+      <td>{{consultorio.nombre}}</td>
+      <td>{{consultorio.direccion}}</td>
+      <td>{{consultorio.departamento}}</td>
+      <td>{{consultorio.municipio}}</td>
+      <td>
+        <button class="btn btn-success mx-2" (click)="onEditar(consultorio)">Editar</button>
+        <button class="btn btn-danger" (click)="onEliminar(consultorio)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

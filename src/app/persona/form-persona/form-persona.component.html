@@ -1,0 +1,60 @@
+<button class="btn btn-dark my-2" (click)="onRegresar()">Regresar</button>
+<form [formGroup]="personaForm" (ngSubmit)="onSubmit()">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="alert alert-danger" *ngIf="error">{{msg}}</div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-4 mb-3">
+      <label for="tipo_documento" class="form-label">Tipo Documento *</label>
+      <input type="text" class="form-control" id="tipo_documento" formControlName = "tipo_documento">
+      <small class="text-danger" *ngIf="personaForm.get('tipo_documento')?.touched && personaForm.get('tipo_documento')?.errors?.['required']">* Este campo es obligatorio</small>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="num_documento" class="form-label"># Documento *</label>
+      <input type="text" class="form-control" id="num_documento" formControlName = "num_documento">
+      <small class="text-danger" *ngIf="personaForm.get('num_documento')?.touched && personaForm.get('num_documento')?.errors?.['required']">* Este campo es obligatorio</small>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="nombre" class="form-label">Nombre *</label>
+      <input type="text" class="form-control" id="nombre" formControlName = "nombre">
+      <small class="text-danger" *ngIf="personaForm.get('nombre')?.touched && personaForm.get('nombre')?.errors?.['required']">* Este campo es obligatorio</small>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="apellido" class="form-label">Apellido *</label>
+      <input type="text" class="form-control" id="apellido" formControlName = "apellido">
+      <small class="text-danger" *ngIf="personaForm.get('apellido')?.touched && personaForm.get('apellido')?.errors?.['required']">* Este campo es obligatorio</small>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="email" class="form-label">Correo Electronico *</label>
+      <input type="email" class="form-control" id="email" formControlName = "email">
+      <small class="text-danger" *ngIf="personaForm.get('email')?.touched && personaForm.get('email')?.errors?.['required']">* Este campo es obligatorio</small>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="direccion" class="form-label">Direccion *</label>
+      <input type="text" class="form-control" id="direccion" formControlName = "direccion">
+      <small class="text-danger" *ngIf="personaForm.get('direccion')?.touched && personaForm.get('direccion')?.errors?.['required']">* Este campo es obligatorio</small>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="telefono" class="form-label">Telefono *</label>
+      <input type="text" class="form-control" id="telefono" formControlName = "telefono">
+      <small class="text-danger" *ngIf="personaForm.get('telefono')?.touched && personaForm.get('telefono')?.errors?.['required']">* Este campo es obligatorio</small>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="departamento" class="form-label">Departamento *</label>
+      <select #dtoSelect class="form-select" formControlName = "departamento_id" (change) = "onCambioDepartamento(dtoSelect.value)">
+        <option value="" selected>Selecciones ...</option>
+        <option value="{{departamento.id}}" *ngFor="let departamento of departamentos">{{departamento.nombre}}</option>
+      </select>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="municipio" class="form-label">Municipio *</label>
+      <select class="form-select" formControlName = "municipio_id">
+        <option value="" selected>Seleccione ...</option>
+        <option value="{{municipio.id}}" *ngFor="let municipio of municipiosDepartamento">{{municipio.nombre}}</option>
+      </select>
+    </div>
+    <button class="btn btn-primary col-md-4">{{labelBoton}}</button>
+  </div>
+</form>

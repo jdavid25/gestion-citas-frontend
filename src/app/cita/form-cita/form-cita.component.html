@@ -1,0 +1,39 @@
+<button class="btn btn-dark my-2" (click)="onRegresar()">Regresar</button>
+<div class="alert alert-danger" *ngIf="error">{{msg}}</div>
+<div class="row">
+  <div class="col-md-3 mb-3">
+    <label for="fecha" class="form-label">Fecha</label>
+    <input type="date" class="form-control" id="fecha" [(ngModel)] = "fechaFiltro">
+  </div>
+</div>
+<button class="btn btn-info" (click)="onFiltrar()">Filtrar</button>
+<button class="btn btn-secondary ms-2" (click)="onLimpiarFiltro()">Limpiar</button>
+<div *ngIf="!agendaList?.length" class="alert alert-info my-2">No hay registros</div>
+<table *ngIf="agendaList?.length" class="table table-striped my-2">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Consultorio</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Médico</th>
+      <th scope="col">Municipio</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Hora</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let agenda of agendaList; index as i;">
+      <th scope="row">{{i+1}}</th>
+      <td>{{agenda.consultorio}}</td>
+      <td>{{agenda.direccion}}</td>
+      <td>{{agenda.persona}}</td>
+      <td>{{agenda.municipio}}</td>
+      <td>{{agenda.fecha}}</td>
+      <td>{{agenda.hora}}</td>
+      <td>
+        <button class="btn btn-success me-2" (click)="onSeleccionar(agenda)">Seleccionar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

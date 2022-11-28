@@ -1,0 +1,23 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="row">
+        <div class="alert alert-danger" *ngIf="error">{{msg}}</div>
+      </div>
+      <div class="row">
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo electrónico *</label>
+          <input type="email" class="form-control" id="email" formControlName = "email" placeholder="name@example.com">
+          <small class="text-danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">* Este campo es obligatorio</small>
+          <small class="text-danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']">* Ingrese un correo válido</small>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña *</label>
+          <input type="password" class="form-control" id="password"  formControlName = "password" placeholder="contraseña">
+          <small class="text-danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">* Este campo es obligatorio</small>
+        </div>
+        <button class="btn btn-primary">Ingresar</button>
+    </div>
+  </div>
+  </div>
+</form>

@@ -1,0 +1,37 @@
+<button class="btn btn-dark my-2" (click)="onRegresar()">Regresar</button>
+<form [formGroup]="consultorioForm" (ngSubmit)="onSubmit()">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="row">
+        <div class="alert alert-danger" *ngIf="error">{{msg}}</div>
+      </div>
+      <div class="row">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre *</label>
+          <input type="text" class="form-control" id="nombre" formControlName = "nombre" placeholder="nombre">
+          <small class="text-danger" *ngIf="consultorioForm.get('nombre')?.touched && consultorioForm.get('nombre')?.errors?.['required']">* Este campo es obligatorio</small>
+        </div>
+        <div class="mb-3">
+          <label for="direccion" class="form-label">Dirección *</label>
+          <input type="text" class="form-control" id="direccion" formControlName = "direccion" placeholder="dirección">
+          <small class="text-danger" *ngIf="consultorioForm.get('direccion')?.touched && consultorioForm.get('direccion')?.errors?.['required']">* Este campo es obligatorio</small>
+        </div>
+        <div class="mb-3">
+          <label for="departamento" class="form-label">Departamento *</label>
+          <select #dtoSelect class="form-select" formControlName = "departamento_id" (change) = "onCambioDepartamento(dtoSelect.value)">
+            <option value="" selected>Selecciones ...</option>
+            <option value="{{departamento.id}}" *ngFor="let departamento of departamentos">{{departamento.nombre}}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="municipio" class="form-label">Municipio *</label>
+          <select class="form-select" formControlName = "municipio_id">
+            <option value="" selected>Seleccione ...</option>
+            <option value="{{municipio.id}}" *ngFor="let municipio of municipiosDepartamento">{{municipio.nombre}}</option>
+          </select>
+        </div>
+        <button class="btn btn-primary">{{labelBoton}}</button>
+    </div>
+  </div>
+  </div>
+</form>

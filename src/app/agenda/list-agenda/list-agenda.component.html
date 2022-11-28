@@ -1,0 +1,33 @@
+<h1>Médico: {{persona.nombre}} {{persona.apellido}}</h1>
+<div class="my-2">
+  <button class="btn btn-dark" (click)="onRegresar()">Regresar</button>
+  <button class="btn btn-primary mx-2" (click)="onCrear()">Crear agenda</button>
+</div>
+<div  *ngIf="!agendaList?.length" class="alert alert-info">No hay registros</div>
+<table *ngIf="agendaList?.length" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Consultorio</th>
+      <th scope="col">Departamento</th>
+      <th scope="col">Municipio</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Hora</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let agenda of agendaList; index as i;">
+      <th scope="row">{{i+1}}</th>
+      <td>{{agenda.consultorio}}</td>
+      <td>{{agenda.departamento}}</td>
+      <td>{{agenda.municipio}}</td>
+      <td>{{agenda.fecha}}</td>
+      <td>{{agenda.hora}}</td>
+      <td>
+        <button class="btn btn-success me-2" (click)="onEditar(agenda)">Editar</button>
+        <button class="btn btn-danger" (click)="onEliminar(agenda)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

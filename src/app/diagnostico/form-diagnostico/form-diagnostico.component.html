@@ -1,0 +1,24 @@
+<button class="btn btn-dark my-2" (click)="onRegresar()">Regresar</button>
+<form [formGroup]="diagnosticoForm" (ngSubmit)="onSubmit()">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="alert alert-danger" *ngIf="error">{{msg}}</div>
+      <div class="row">
+        <div class="col-md-12 mb-3">
+          <label for="descripcion" class="form-label">Descripción *</label>
+          <textarea class="form-control" placeholder="Escribe una descripcion del diagnostico aquí" id="descripcion" formControlName = "descripcion" rows="3"></textarea>
+          <small class="text-danger" *ngIf="diagnosticoForm.get('descripcion')?.touched && diagnosticoForm.get('descripcion')?.errors?.['required']">* Este campo es obligatorio</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center align-items-center mb-4" *ngFor="let medicamento of medicamentos">
+    <input class="me-1" type="checkbox" name="{{medicamento.nombre}}" id="{{medicamento.nombre}}" value="{{medicamento.id}}" (click)="addMedicamento($event.target)">
+    <label class="me-1" for="{{medicamento.nombre}}">{{medicamento.nombre}}</label>
+    <input class="me-2" type="number" name="cantidad-{{medicamento.id}}" id="cantidad-{{medicamento.id}}" placeholder="cantidad">
+    <textarea name="des-{{medicamento.id}}" id="des-{{medicamento.id}}" cols="30" rows="2" placeholder="descripción"></textarea>
+  </div>
+  <div class="text-center">
+    <button class="btn btn-primary">{{labelBoton}}</button>
+  </div>
+</form>

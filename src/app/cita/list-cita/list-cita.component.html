@@ -1,0 +1,40 @@
+<h1>{{tipoPersona}}: {{persona.nombre}} {{persona.apellido}}</h1>
+<div *ngIf="user.perfil_id == 1" class="my-2">
+  <button class="btn btn-dark" (click)="onRegresar()">Regresar</button>
+  <button class="btn btn-primary ms-2" (click)="onCrear()">Agregar</button>
+</div>
+<div  *ngIf="!citas?.length" class="alert alert-info">No hay registros</div>
+<table *ngIf="citas?.length" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">{{tipoPersonaTabla}}</th>
+      <th scope="col">Consultorio</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Hora</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cita of citas; index as i;">
+      <th scope="row">{{i+1}}</th>
+      <td>{{cita.persona}}</td>
+      <td>{{cita.consultorio}}</td>
+      <td>{{cita.direccion}}</td>
+      <td>{{cita.fecha}}</td>
+      <td>{{cita.hora}}</td>
+      <td>{{cita.descripcion}}</td>
+      <td>
+        <button *ngIf="user.perfil_id == 2" class="btn btn-warning mx-2" (click)="onAtender(cita)">Atender</button>
+        <button *ngIf="user.perfil_id == 3 && cita.estado_id == 7" class="btn btn-warning mx-2" (click)="onVerDiagnostico(cita)">Ver diagnostico</button>
+        <span *ngIf="user.perfil_id == 3 && cita.estado_id == 1" class="badge bg-secondary">Sin diagnostico</span>
+        <span *ngIf="user.perfil_id == 1 && cita.estado_id == 7" class="badge bg-success">Finalizado</span>
+        <button *ngIf="user.perfil_id == 1 && cita.estado_id == 1" class="btn btn-success me-2" (click)="onEditar(cita)">Editar</button>
+        <button *ngIf="user.perfil_id == 1 && cita.estado_id == 1" class="btn btn-danger" (click)="onCancelar(cita)">Cancelar</button>
+        <span *ngIf="cita.estado_id == 2" class="badge bg-danger">Cancelada</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
